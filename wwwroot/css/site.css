@@ -22,26 +22,76 @@ body {
     height: 100vh;
 }
 
-.body-diagram {
+.human-body {
+    width: 207px;
     position: relative;
-    background-image: url('/images/Male-Musculature.svg');
-    background-size: contain;
-    width: 600px;
-    height: 800px;
-    cursor: pointer;
+    padding-top: 240px;
+    height: 260px;
+    display: block;
+    margin: 40px auto;
 }
 
-.muscle-area {
-    position: absolute;
-    background-color: rgba(0, 128, 255, 0.5);
-}
+    .human-body svg:hover {
+        cursor: pointer;
+    }
 
-.selected-area {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+        .human-body svg:hover path {
+            fill: #ff7d16;
+        }
+
+    .human-body svg {
+        position: absolute;
+        left: 50%;
+        fill: #57c9d5;
+    }
+
+        .human-body svg.head {
+            margin-left: -28.5px;
+            top: -6px;
+        }
+
+        .human-body svg.shoulder {
+            margin-left: -53.5px;
+            top: 69px;
+        }
+
+        .human-body svg.arm {
+            margin-left: -78px;
+            top: 112px;
+        }
+
+        .human-body svg.cheast {
+            margin-left: -43.5px;
+            top: 88px;
+        }
+
+        .human-body svg.stomach {
+            margin-left: -37.5px;
+            top: 130px;
+        }
+
+        .human-body svg.legs {
+            margin-left: -46.5px;
+            top: 205px;
+            z-index: 9999;
+        }
+
+        .human-body svg.hands {
+            margin-left: -102.5px;
+            top: 224px;
+        }
+
+#area {
+    display: block;
+    width: 100%;
+    clear: both;
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 5px;
-    display: none;
+    text-align: center;
+    font-size: 25px;
+    font-family: Courier New;
+    color: #a5a5a5;
 }
+
+    #area #data {
+        color: black;
+    }
