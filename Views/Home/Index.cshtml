@@ -1,8 +1,56 @@
-﻿@{
+﻿@using System.Configuration
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="indexApp">
+    <div class="body-diagram" @@mousemove="handleMouseMove" @@click="handleBodyClick">
+        <div v-for="(area, index) in muscleAreas" :key="index" :style="area.style" class="muscle-area"></div>
+    </div>
+    <div class="selected-area" v-if="selectedArea">{{ selectedArea.name }}</div>
 </div>
+
+    <script>
+        var indexApp = new Vue({
+            el: '#indexApp',
+            data: {
+                mouseX: 0,
+                mouseY: 0,
+                muscleAreas: [
+                    { name: 'Upper Back', coordinates: { x: 100, y: 200, width: 50, height: 80 } },
+                    // Add more muscle areas as needed
+                ],
+                selectedArea: null
+            },
+            methods: {
+                handleMouseMove(event) {
+                    this.mouseX = event.clientX;
+                    this.mouseY = event.clientY;
+                },
+                handleBodyClick() {
+                    this.selectedArea = this.getClickedArea();
+                    if (this.selectedArea) {
+                        this.showSelectedArea();
+                    }
+                },
+                getClickedArea() {
+                    for (const area of this.muscleAreas) {
+                        if (
+                            this.mouseX >= area.coordinates.x &&
+                            this.mouseX <= area.coordinates.x + area.coordinates.width &&
+                            this.mouseY >= area.coordinates.y &&
+                            this.mouseY <= area.coordinates.y + area.coordinates.height
+                        ) {
+                            return area;
+                        }
+                    }
+                    return null;
+                },
+                showSelectedArea() {
+                    this.$nextTick(() => {
+                        document.querySelector('.selected-area').style.display = 'block';
+                    });
+                }
+            }
+        });
+    </script>
